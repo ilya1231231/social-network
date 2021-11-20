@@ -21,12 +21,12 @@
     {{-- @endif --}}
     <ul class="navbar-nav ml-auto">
     @if (Auth::check())
-        <li class="nav-item"><a href-"#" class="nav-link">{{ Auth::user()->getNameOrUsername() }}</a><li>
-        <li class="nav-item"><a href-"#" class="nav-link">Обновить профиль</a><li>
-        <li class="nav-item"><a href-"#" class="nav-link">Выйти</a><li>
+        <li class="nav-item"><a href="#" class="nav-link">{{ Auth::user()->getNameOrUsername() }}</a><li>
+        <li class="nav-item"><a href="#" class="nav-link">Обновить профиль</a><li>
+        <li class="nav-item"><a href="#" class="nav-link">Выйти</a><li>
     @else
-        <li class="nav-item"><a href-"#" class="nav-link">Зарегистрироваться</a><li>
-        <li class="nav-item"><a href-"#" class="nav-link">Войти</a><li>
+        <li class="nav-item"><a href="{{ route('auth.signup') }}" class="nav-link">Зарегистрироваться</a><li>
+        <li class="nav-item"><a href="#" class="nav-link">Войти</a><li>
     @endif
   </div>
 </div>

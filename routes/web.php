@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\{HomeController, AuthController};
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,6 +16,8 @@ use App\Http\Controllers\HomeController;
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/alert', function(){
-    return redirect()->route('home')->with('info', 'Вы можете войти!');
-});
+
+//Авторизация
+
+Route::get('/signup', [AuthController::class, 'getSignup'])->name('auth.signup');
+Route::post('/signup', [AuthController::class, 'postSignup']);
