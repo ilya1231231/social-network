@@ -25,3 +25,8 @@ Route::get('/search', [SearchController::class, 'getResults'])->name('search.res
 
 //Профиль пользователя
 Route::get('/user/{username}', [ProfileController::class, 'getProfile'])->name('profile.index');
+
+//Редактирование профиля
+//Разрешается только аутентифициорванному пользователю
+Route::get('/profile/edit', [ProfileController::class, 'getEdit'])->middleware('auth')->name('profile.edit');
+Route::post('/profile/edit', [ProfileController::class, 'postEdit'])->middleware('auth')->name('profile.edit');

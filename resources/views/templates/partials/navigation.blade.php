@@ -23,7 +23,7 @@
     @if (Auth::check())
         <!-- Получаем username авторизиррованного пользователя -->
         <li class="nav-item"><a href="{{ route('profile.index', ['username'=>Auth::user()->username]) }}" class="nav-link">{{ Auth::user()->getNameOrUsername() }}</a><li>
-        <li class="nav-item"><a href="#" class="nav-link">Обновить профиль</a><li>
+        <li class="nav-item"><a href="{{ route('profile.edit') }}" class="nav-link">Обновить профиль</a><li>
         <li class="nav-item"><a href="{{ route('auth.signout') }}" class="nav-link">Выйти</a><li>
     @else
         <li class="nav-item"><a href="{{ route('auth.signup') }}" class="nav-link">Зарегистрироваться</a><li>
