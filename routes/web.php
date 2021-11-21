@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\{HomeController, AuthController};
+use App\Http\Controllers\{HomeController, AuthController, SearchController};
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,3 +30,6 @@ Route::post('/signin', [AuthController::class, 'postSignin'])->middleware('guest
 //выйти
 
 Route::get('/signout', [AuthController::class, 'signOut'])->name('auth.signout');
+
+//Поиск
+Route::get('/search', [SearchController::class, 'getResults'])->name('search.results');
