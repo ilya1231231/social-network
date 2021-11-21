@@ -44,4 +44,34 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getName()
+    {
+        //Если имя и фамилия существуют,то возвращаем их
+        if ($this->first_name && $this->last_name)
+        {
+            return "{$this->first_name} {$this->last_name}";
+        }
+        //Если существоем только имя,то возвращаем его
+        if ($this->first_name)
+        {
+            return $this->first_name;
+        }
+
+        return null;
+    }
+
+    public function getNameOrUsername()
+    {
+        //Если метод ничего не возващает,то возвращаем логин пользователя
+        return $this->getName() ?: $this->username;
+    }
+
+    public function getFirstNameOrUsername()
+    {
+        //Возвращаем username если только First_name не указан
+        return $this->first_name ?: $this->username;
+    }
+
+
 }

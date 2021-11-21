@@ -16,8 +16,17 @@ use App\Http\Controllers\{HomeController, AuthController};
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+//Не даем попасть пользователю на ту страницу ,на которую он попасть не может(см. middleware:Authenticate RedirectifAuthentificated)
+//регистрация
+//Вход и регистрация только для гостей(middleware('guest'))
+Route::get('/signup', [AuthController::class, 'getSignup'])->middleware('guest')->name('auth.signup');
+Route::post('/signup', [AuthController::class, 'postSignup'])->middleware('guest');
 
-//Авторизация
+//авторизация
+//Вход и регистрация только для гостей(middleware('guest'))
+Route::get('/signin', [AuthController::class, 'getSignin'])->middleware('guest')->name('auth.signin');
+Route::post('/signin', [AuthController::class, 'postSignin'])->middleware('guest');
 
-Route::get('/signup', [AuthController::class, 'getSignup'])->name('auth.signup');
-Route::post('/signup', [AuthController::class, 'postSignup']);
+//выйти
+
+Route::get('/signout', [AuthController::class, 'signOut'])->name('auth.signout');
