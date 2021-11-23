@@ -11,7 +11,7 @@
             <a class="nav-link" href="#">Стена</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Друзья</a>
+            <a class="nav-link" href="{{ route('friends.index') }}">Друзья</a>
         </li>
         <form method="GET" action="{{ route('search.results') }}" class="form-inline my-2 ml-3 my-lg-0">
             <input name="query" class="form-control mr-sm-2" type="search" placeholder="Что ищем?" aria-label="Search">

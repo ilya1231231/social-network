@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{HomeController, AuthController, SearchController, ProfileController};
+use App\Http\Controllers\{HomeController, AuthController, SearchController, ProfileController, FriendController};
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -30,3 +30,6 @@ Route::get('/user/{username}', [ProfileController::class, 'getProfile'])->name('
 //Разрешается только аутентифициорванному пользователю
 Route::get('/profile/edit', [ProfileController::class, 'getEdit'])->middleware('auth')->name('profile.edit');
 Route::post('/profile/edit', [ProfileController::class, 'postEdit'])->middleware('auth')->name('profile.edit');
+
+//Страница всех друзей и заявки в друзья
+Route::get('/friends', [FriendController::class, 'getIndex'])->middleware('auth')->name('friends.index');
