@@ -18,7 +18,7 @@
       @elseif ( Auth::user()->isFriendWith($user))
         {{ $user->getFirstNameOrusername()}} у вас в друзьях.
       @else
-        <a href="#" class="btn btn-success">Добавить в друзья</a>
+        <a href="{{ route('friends.add', ['username'=> $user->username]) }}" class="btn btn-success">Добавить в друзья</a>
       @endif
       <h4>Друзья пользователя {{ $user->getFirstNameOrUsername() }} </h4>
       <!-- Если нет друзей -->
