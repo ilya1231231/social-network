@@ -33,4 +33,6 @@ Route::post('/profile/edit', [ProfileController::class, 'postEdit'])->middleware
 
 //Страница всех друзей и заявки в друзья
 Route::get('/friends', [FriendController::class, 'getIndex'])->middleware('auth')->name('friends.index');
-Route::get('/friends/add/{username}', [FriendController::class, 'getAdd'])->middleware('auth')->name('friends.add');
+//отпрвыить заявку в друзья
+Route::get('/friends/accept/{username}', [FriendController::class, 'getAccept'])->middleware('auth')->name('friends.accept');
+//Подтвердить заявку в друзья

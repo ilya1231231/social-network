@@ -126,9 +126,9 @@ class User extends Authenticatable
     }
 
     //Принять запрос на дружбу
-    public function acceptFriendRequest()
+    public function acceptFriendRequest(User $user)
     {
-        $this->friendRequests()->where('id', $user->id)->first()->pivot()->update([
+        $this->friendRequests()->where('id', $user->id)->first()->pivot->update([
             'accepted' =>true
         ]);
     }

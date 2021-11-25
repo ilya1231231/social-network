@@ -35,7 +35,10 @@ class FriendController extends Controller
                 ->route('profile.index', ['username' => $user->username])
                 ->with('info', 'Пользователю отправлен запрос в друзья');
             }
-
+        //Проверка, чтобы через ссылку нельзя было себя добавить в друзья
+         if (Auth::user()->id === $user->id){
+             return redirect()->route('home');
+         }
          //проверка если пользователь уже в друзьях
          if (Auth::user()->isFriendWith($user)){
            return redirect()
@@ -48,6 +51,26 @@ class FriendController extends Controller
          return redirect()
             ->route('profile.index', ['username' => $username])
             ->with('info', 'Заявка в друзья отправлена');
+    }
+
+    public function getAccept($username)
+    {
+        $user = User::where('username', $username)->first();
+
+        //если пользователь не найден через ссылку,то редиректим на началную страницу с сообщением
+        if (!$user) {
+            return redirect()->route('home')->with('info', 'Пользователь не найден!');
+        }
+
+        if (! Auth::user()->hasFriendRequestReceived($user)){
+            return redirect()->route('home');
+        }
+
+        Auth::user()->acceptFriendRequest($user);
+
+        return redirect()
+           ->route('profile.index', ['username' => $username])
+           ->with('info', 'Заявка в друзья принята');
     }
 
 }
